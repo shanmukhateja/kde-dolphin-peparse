@@ -18,7 +18,6 @@ include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMDeprecationSettings)
 include(ECMOptionalAddSubdirectory)
-include(FeatureSummary)
 
 find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS
     Core
@@ -42,13 +41,16 @@ find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
 add_library(
     hello-dolphin-plugin
     SHARED
+    src/hello-dolphin-plugin.h
     src/hello-dolphin-plugin.cpp
 )
+
 # Set properties for the shared library
 set_target_properties(hello-dolphin-plugin PROPERTIES
     VERSION "${RELEASE_SERVICE_VERSION}"
     SOVERSION "1"
 )
+
 target_link_libraries(hello-dolphin-plugin KF6::CoreAddons KF6::XmlGui)
 target_link_libraries(hello-dolphin-plugin KF6::KIOCore KF6::KIOFileWidgets KF6::KIOWidgets)
 
@@ -65,7 +67,8 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 # Set the destination for installation if needed
-install(TARGETS hello-dolphin-plugin DESTINATION ${PLUGIN_INSTALL_DIR})
+install(TARGETS hello-dolphin-plugin DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/propertiesdialog/)
+install(FILES hello-dolphin-plugin.json DESTINATION  ${KDE_INSTALL_PLUGINDIR}/kf6/propertiesdialog/)
 
-# Ensure that CMake uses the specified binary directory by adding an empty add_subdirectory call
-# add_subdirectory("./build/")
+#install(TARGETS hello-dolphin-plugin DESTINATION ~/.local/lib/qt6/plugins/kf6/propertiesdialog/hello-dolphin-plugin)
+#install(FILES hello-dolphin-plugin.json DESTINATION  ~/.local/lib/qt6/plugins/kf6/propertiesdialog/hello-dolphin-plugin)

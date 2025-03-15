@@ -1,0 +1,16 @@
+{
+    "KPlugin": {
+        "Description": "This plugin adds a custom tab with a simple greeting message.",
+        "Icon": "document-open",
+        "MimeTypes": [
+            "application/octet-stream"
+        ],
+        "Name": "Hello Dolphin plugin",
+        "EnabledByDefault": true,
+        "MimeType": "application/octet-stream",
+        "X-KDE-Protocols": [
+            "file",
+            "desktop"
+        ]
+    }
+}
