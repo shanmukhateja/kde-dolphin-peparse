@@ -1,6 +1,6 @@
 {
     "KPlugin": {
-        "Description": "This plugin adds a custom tab with a simple greeting message.",
+        "Description": "This plugin inserts 'Version' row in General tab for EXE/DLL files.",
         "Icon": "document-open",
         "MimeTypes": [
             "application/octet-stream"

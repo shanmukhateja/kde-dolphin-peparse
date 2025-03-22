@@ -22,7 +22,6 @@ protected:
     const std::vector<std::string> ALLOW_LIST = {".exe", ".dll"};
 
     void init();
-    void setFileItem(std::string filePath);
     void injectFileVersionIntoGeneralTab(KPageWidgetItem *current, KPageWidgetItem *before);
 
     bool is_target_file_type(QString fileName);
