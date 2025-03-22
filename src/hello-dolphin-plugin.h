@@ -1,8 +1,13 @@
 #pragma once
 
 #include <QObject>
+#include <QString>
+
 #include <KFileItem>
 #include <KPropertiesDialogPlugin>
+#include "pe-parser-wrapper.h"
+
+using namespace std;
 
 class HelloDolphinPlugin : public KPropertiesDialogPlugin
 {
@@ -10,7 +15,16 @@ class HelloDolphinPlugin : public KPropertiesDialogPlugin
 
 public:
     HelloDolphinPlugin(QObject *parent);
-    void setFileItem(const KFileItem &fileItem);
+
+protected:
+    PEParserWrapper *peWrapper;
+    std::string version = "";
+    const std::vector<std::string> ALLOW_LIST = {".exe", ".dll"};
+
     void init();
+    void setFileItem(std::string filePath);
+    void injectFileVersionIntoGeneralTab(KPageWidgetItem *current, KPageWidgetItem *before);
+
+    bool is_target_file_type(QString fileName);
 
 };

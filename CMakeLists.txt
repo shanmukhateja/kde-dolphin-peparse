@@ -19,6 +19,9 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMDeprecationSettings)
 include(ECMOptionalAddSubdirectory)
 
+#include_directories("/usr/include/pe-parse")
+find_package(pe-parse REQUIRED)
+
 find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS
     Core
     Core5Compat
@@ -43,6 +46,8 @@ add_library(
     SHARED
     src/hello-dolphin-plugin.h
     src/hello-dolphin-plugin.cpp
+    src/pe-parser-wrapper.h
+    src/pe-parser-wrapper.cpp
 )
 
 # Set properties for the shared library
@@ -53,6 +58,7 @@ set_target_properties(hello-dolphin-plugin PROPERTIES
 
 target_link_libraries(hello-dolphin-plugin KF6::CoreAddons KF6::XmlGui)
 target_link_libraries(hello-dolphin-plugin KF6::KIOCore KF6::KIOFileWidgets KF6::KIOWidgets)
+target_link_libraries(hello-dolphin-plugin pe-parse::pe-parse)
 
 # Include directories for the project
 include_directories(
